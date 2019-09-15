@@ -1,0 +1,203 @@
+$card-padding: 20px;
+
+* {
+    box-sizing: border-box;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    position: relative;
+    color: rgba(0, 0, 0, 0.8);
+    background-color: rgb(232, 238, 245);
+    overflow: hidden;
+    height: 100%;
+}
+h3, h4, h5 {
+    margin: 0;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+    font-size: 8px;
+}
+h5 {
+    font-size: 7px;
+}
+.ID-card {
+    width: 400px;
+    height: 250px;
+    margin: auto;
+    position: relative; 
+    top: 80px;
+    padding: $card-padding;
+    border-radius: 10px;
+    background-image: url("https://i.ibb.co/NL188dQ/white-wood.png");
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 2px 5px 8px rgba(0, 0, 0, 0.35);
+    z-index: 10;
+}
+.top-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px 0;
+}
+.flag {
+    height: 10px;
+    margin-right: 5px;
+}
+.card-title, .card-title-en {
+    line-height: 100%;
+}
+.name, .name-en, .ID-number {
+    font-weight: normal;
+}
+.card-title-en {
+    margin-left: auto;
+}
+.middle-row {
+    margin-top: 30px;
+    display: inline-block;
+}
+.bottom-row {
+    position: absolute;
+    bottom: $card-padding;
+}
+.ID-photo {
+    display: block;
+    width: 100px;
+    height: 128px;
+    background-image: url('http://p0.meituan.net/movie/a9ee38e037ecc14a1c1fc5d9b7d1304330866.jpg');
+    background-repeat: no-repeat;
+    background-position: -90px center;
+    background-size: 250px;
+    position: absolute;
+    top: 60px;
+    right: $card-padding;
+}
+.series-number {
+    // width: 2px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    position: absolute;
+    right: $card-padding;
+    bottom: 100px;
+    z-index: 10;
+}
+.signature-title {
+    position: absolute;
+    bottom: $card-padding;
+    right: $card-padding;
+}
+.signature {
+    font-family: 'Liu Jian Mao Cao', cursive;
+    font-weight: 100;
+    position: absolute;
+    right: 40px;
+    bottom: 35px;
+}
+.ID-number {
+    line-height: 100%;
+    margin-top: 5px;
+}
+.title {
+    text-align: center;
+    margin: 16px;
+    font-weight: normal;
+    font-size: 16px;
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
+    z-index: 10;
+}
+
+$totalShape: 10;
+$shapeMaxSize: 60;
+$shapeMinSize: 30;
+$colorMaps: (
+    "red": rgba(188, 66, 59, 0.95),
+    "green": rgba(69, 139, 68, 0.95),
+    "blue": rgba(30, 75, 133, 0.95),
+    "blueGray": rgba(200, 212, 230, 0.95),
+    "white": rgba(255, 255, 255, 0.95),
+    "yellow": rgba(230, 180, 80, 0.95)
+);
+
+
+@function getColors() {
+    $colors: ();
+    @each $name, $color in $colorMaps {
+        $colors: append($colors, map-get($colorMaps, $name));
+    }
+    @return $colors;
+}
+$colors: getColors();
+
+@function getRandomColor() {
+    @return (nth($colors ,random(length($colors))));
+}
+
+@mixin randomPosition {
+    position: absolute;
+    $positionRange: random(2 * $shapeMaxSize) - $shapeMaxSize;
+    top: calc(#{random(100) + vh} + #{$positionRange + px});
+    left: calc(#{random(100) + vw} + #{$positionRange + px});
+}
+@mixin shape {
+    z-index: 1;
+    @include randomPosition;
+    transform: rotate(random(360) + deg);
+}
+@mixin triangle {
+    @include shape;
+    $size: (random($shapeMaxSize - $shapeMinSize) + $shapeMinSize) + px;
+    border: $size solid getRandomColor();
+    border-color: getRandomColor() transparent transparent transparent;
+}
+@mixin circle {
+    @include shape;
+    $size: (random($shapeMaxSize - $shapeMinSize) + $shapeMinSize) + px;
+    width: $size;
+    height: $size;
+    background-color: getRandomColor();
+    border-radius: 100%;
+}
+@mixin halfCircle {
+    @include shape;
+    $size: (random($shapeMaxSize - $shapeMinSize) + $shapeMinSize) + px;
+    width: $size;
+    height: calc(#{$size} / 2);
+    border-bottom-left-radius: $size;
+    border-bottom-right-radius: $size;
+    background-color: getRandomColor();
+}
+@mixin square {
+    @include shape;
+    $size: (random($shapeMaxSize - $shapeMinSize) + $shapeMinSize) + px;
+    width: $size;
+    height: $size;
+    transform: rotate(random(360) + deg);
+    background-color: getRandomColor();
+}
+@mixin shapeFactory {
+    $randomShape: random(4);
+    @if $randomShape == 1 {
+        @include circle;
+    } @else if $randomShape == 2 {
+        @include triangle;
+    } @else if $randomShape == 3 {
+        @include halfCircle;
+    } @else if $randomShape ==4 {
+        @include square;
+    }
+}
+@mixin randomShape {
+    @for $i from 1 through $totalShape {
+        .shape-#{$i} {
+            @include shapeFactory;
+        }
+    }
+}
+@include randomShape;

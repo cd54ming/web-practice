@@ -1,0 +1,144 @@
+$fontColor: rgb(235, 235, 235);
+$borderRadius: 8px;
+$borderColor: red;
+$primeColor:  rgb(35, 35, 45);
+
+$backgroundColor: (
+  pageBackgroundColor: rgb(235, 235, 235),
+  tableHeaderBackgroundColor: $primeColor,
+  tableBodyBackgroundColor: rgb(255, 255, 255),
+  hoverBackgroundColor: rgb(240, 240, 240),
+);
+
+$fontSize: (
+  xx-lg: 1.75rem, // 28px
+  x-lg: 1.5rem, // 24px
+  lg: 1.25rem, // 20px
+  md: 1rem, // 16px
+  sm: 0.75rem, // 12px
+  x-sm: 0.5rem, // 8px
+);
+
+$paddingSize: (
+  xx-lg: 5rem,
+  x-lg: 3rem,
+  lg: 2rem,
+  md: 1rem,
+  sm: 0.75rem,
+  x-sm: 0.5rem,
+  xx-sm: 0.25rem,
+);
+
+@function checkKeyInMap($map, $key) {
+  @if map-has-key($map, $key) {
+    @return true;
+  }
+  @return false;
+}
+
+@mixin backgroundColor($color) {
+  @if (checkKeyInMap($backgroundColor, $color)) {
+    $color: map-get($backgroundColor, $color);
+  }
+  background-color: $color;
+}
+@mixin fontSize($size) {
+  @if (checkKeyInMap($fontSize, $size)) {
+    $size: map-get($fontSize, $size);
+  }
+  font-size: $size;
+}
+
+@function findPaddingSize($size) {
+  @if (checkKeyInMap($paddingSize, $size)) {
+    $size: map-get($fontSize, $size);
+  }
+  @return $size;
+}
+
+.margin-lg {
+  margin: 2rem;
+}
+.margin-md {
+  margin: 1.5rem;
+}
+.margin-sm {
+  margin: 1rem;
+}
+.margin-bottom-0 {
+  margin-bottom: 0;
+}
+.margin-left-0 {
+  margin-left: 0;
+}
+.margin-right-0 {
+  margin-right: 0;
+}
+.margin-top-0 {
+  margin-top: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  color: $fontColor;
+  padding: findPaddingSize(xx-lg);
+  @include backgroundColor(pageBackgroundColor);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.table {
+  &-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-transform: capitalize;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    border-top-left-radius: $borderRadius;
+    border-top-right-radius: $borderRadius;
+    @include fontSize(lg);
+    @include backgroundColor(tableHeaderBackgroundColor);
+    > * {
+      flex-basis: 100%;
+    }
+  }
+  &-body {
+    border-top: 0;
+    color: rgb(35, 35, 45);
+    border: 1px solid $primeColor;
+    border-bottom-left-radius: $borderRadius;
+    border-bottom-right-radius: $borderRadius;
+    overflow: hidden;
+    @include fontSize(md);
+    @include backgroundColor(tableBodyBackgroundColor);
+    .table-row:hover {
+      transition: background-color .5s;
+      @include backgroundColor(hoverBackgroundColor);
+    }
+  }
+  &-row {
+    padding: findPaddingSize(md);
+    display: flex;
+    > * {
+      flex-basis: 100%;
+    }
+  }
+}

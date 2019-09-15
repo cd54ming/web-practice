@@ -1,0 +1,164 @@
+$text-color: rgb(60, 70, 83);
+
+$topSpaces: (
+  titleTopSpace: 70px,
+  speakerTopSpace: 20px,
+  sectionTopSpace: 20px
+);
+$fontSizes: (
+  titleFontSize: 2em,
+  speakerFontSize: 1.2em,
+  sloganFontSize: 1em,
+  sectionFontSize: 0.9em,
+  periodFontSize: 1.4em
+);
+$letterSpacings: (
+  titleLetterSpacing: 10px,
+  speakerLetterSpacing: 4px,
+  sloganLetterSpacing: 4px,
+  timeLetterSpacing: 5px
+);
+
+@function checkKeyInMap($map, $key) {
+  @if map-has-key($map, $key) {
+    @return true;
+  }
+  @return false;
+}
+
+@mixin topSpace($topSpace) {
+  @if (checkKeyInMap($topSpaces, $topSpace)) {
+    $topSpace: map-get($topSpaces, $topSpace);
+  }
+  margin-top: $topSpace;
+}
+@mixin fontSize($fontSize) {
+  @if (checkKeyInMap($fontSizes, $fontSize)) {
+    $fontSize: map-get($fontSizes, $fontSize);
+  }
+  font-size: $fontSize;
+}
+@mixin letterSpacing($letterSpacing) {
+  @if (checkKeyInMap($letterSpacings, $letterSpacing)) {
+    $letterSpacing: map-get($letterSpacings, $letterSpacing);
+  }
+  letter-spacing: $letterSpacing;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: sans-serif;
+  color: $text-color;
+  background-image: url("../images/white_texture.png");
+}
+main {
+  height: 100vh;
+  padding: 4% 6%;
+  display: grid;
+  grid-template-columns: 48% 4% 48%;
+  max-width: 1200px;
+  margin: auto auto;
+}
+#title {
+  @include topSpace(titleTopSpace);
+  @include fontSize(titleFontSize);
+  @include letterSpacing(titleLetterSpacing);
+}
+#speaker {
+  @include topSpace(speakerTopSpace);
+  @include fontSize(speakerFontSize);
+  @include letterSpacing(speakerLetterSpacing);
+}
+#slogan {
+  @include topSpace(sloganTopSpace);
+  @include fontSize(sloganFontSize);
+  @include letterSpacing(sloganLetterSpacing);
+
+}
+#section {
+  @include topSpace(sectionTopSpace);
+  @include fontSize(sectionFontSize);
+  @include letterSpacing(sectionLetterSpacing);
+  color: lighten($text-color, 10%);
+  p {
+    margin-top: 10px;
+  }
+}
+#time {
+  @include topSpace(timeTopSpace);
+  @include fontSize(timeFontSize);
+  @include letterSpacing(timeLetterSpacing);
+}
+.speaker-avators {
+  height: 800px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+#time {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: calc(100% - 100px);
+}
+#period {
+  @include fontSize(periodFontSize);
+  font-weight: bold;
+}
+#logo {
+  width: 60px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.half-width {
+  width: 50%;
+}
+.full-height {
+  height: 100%;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.p-r {
+  position: absolute;
+  right: 0;
+}
+.p-b {
+  position: absolute;
+  bottom: 0;
+}
+.p-rt {
+  position: relative;
+}
+.p-br {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.left::after, .right::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+@media screen and (max-width:1000px) {
+  main {
+    // grid-template-columns: 1fr;
+    // height: auto;
+  }
+}

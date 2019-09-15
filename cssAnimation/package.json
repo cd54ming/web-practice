@@ -1,0 +1,14 @@
+{
+  "name": "css-animation",
+  "version": "1.0.0",
+  "description": "css animation practice",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "KuoChinMing",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}

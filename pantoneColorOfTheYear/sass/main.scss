@@ -1,0 +1,115 @@
+$pantone-colors: (
+  cerulean: rgb(155, 183 ,212),
+  fuchsiaRose: rgb(199, 67, 117),
+  trueRed: rgb(191, 25, 50),
+  aquaSky: rgb(123, 196, 196),
+  tigerlily: rgb(226, 88, 62),
+  blueTurquoise: rgb(83, 176, 174),
+  sandDollar: rgb(222, 205, 190),
+  chiliPepper: rgb(155, 27, 48),
+  blueIris: rgb(90, 91, 159),
+  mimosa: rgb(240, 192, 90),
+  turquoise: rgb(69, 181, 170),
+  honeysuckle: rgb(217, 79, 112),
+  tagerineTango: rgb(221, 65, 36),
+  emerald: rgb(0, 148, 115),
+  radientOrchid: rgb(173, 94, 153),
+  marsala: rgb(150, 79, 76),
+  greenery: rgb(136, 176, 75),
+);
+$card-width: 150px;
+$card-length: 220px; // not needed
+$card-padding: 10px;
+$color-width: $card-width - ($card-padding * 2);
+$color-height: $color-width;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: sans-serif;
+}
+.cover {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(15, 15, 15);
+  color: rgb(220, 220, 220);
+  position: relative;
+  #cover-title {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border: 7px solid rgb(240, 240, 240);
+    border-radius: 2px;
+    font-size: 1.5rem;
+    padding: 8px;
+    background-image: rgb(40, 40, 40);
+    .brand {
+      position: absolute;
+      bottom: 8px;
+      text-transform: uppercase;
+    }
+    #trade-mark {
+      font-size: 1rem;
+      position: absolute;
+      line-height: 1;
+      left: 200px - 7px + 8px;
+      top: -7px;
+    }
+  }
+}
+.right-bottom-coner {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+.pantone-color {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap-reverse;
+  $i: 1;
+  @each $name, $color in $pantone-colors {
+    .area:nth-of-type(#{$i}) {
+      background-color: map-get($pantone-colors, $name);
+      .card .color {
+        background-color: map-get($pantone-colors, $name);
+      }
+    }
+    $i : $i + 1;
+  }
+}
+.area {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .card {
+    width: $card-width;
+    margin: 20px;
+    // height: $card-length;
+    padding: $card-padding;
+    padding-bottom: $card-padding * 2;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+    .color {
+      width: $color-width;
+      height: $color-height;
+    }
+    p {
+      padding: 0 $card-padding;
+      line-height: 1.2;
+      font-size: 1.05rem;
+      text-transform: capitalize;
+      &.brand {
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-top: 15px;
+      }
+    }
+  }
+}

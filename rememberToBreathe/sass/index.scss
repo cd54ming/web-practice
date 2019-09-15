@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+main {
+  position: relative;
+}
+
+
+#bg-video {
+  width: 100vw;
+  height: 100vh;
+  display: flex; //otherwise safari will have a white gap between browser.
+  object-fit: cover;
+  object-position: center;
+  z-index: -1;
+}
+
+.page-title-area {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.page-title {
+  color: rgba(255, 255, 255, 1);
+  color: orange;
+  font-size: 2.4rem;
+  margin-bottom: 140px;
+}
+.emphasized {
+  font-size: 1.6em;
+  text-transform: uppercase;
+  font-style: italic;
+}

@@ -1,0 +1,311 @@
+@charset "utf-8";
+$bg-color: #22222a;
+$header-text-color: $bg-color;
+$main-text-color: #dddde4;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: $bg-color;
+  color: $main-text-color;
+}
+a {
+  display: block;
+  height: 100%;
+  text-decoration: none;
+  transition: filter;
+  &:visited {
+    color: $main-text-color;
+  }
+}
+ul {
+  list-style: none;
+}
+.container {
+  width: 100%;
+  min-width: 1000px;
+  padding: 0 30px;
+}
+header {
+  background: rgba(240, 240, 244, 0.86);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+  a {
+    color: $header-text-color;
+    &:visited {
+      color: $header-text-color;
+    }
+  }
+}
+.main-nav {
+  padding: 0 30px;
+  display: flex;
+  justify-content: center;
+}
+.main-nav ul {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  li {
+    min-width: 176px;
+    text-align: center;
+    a:hover {
+      color: rgb(0, 87, 224);
+    }
+  }
+}
+.social-list {
+  position: absolute;
+  top: 70px;
+  right: 60px;
+  li {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    margin-left: 10px;
+    background: url('https://kuochinming.github.io/practice-gakki_wall/images/icon-sns.svg');
+    &:nth-child(1) {
+      background-position: 0 0;
+      transition: background-position;
+      &:hover {
+        background-position: 0 32px;
+      }
+    }
+    &:nth-child(2) {
+      background-position: 32px 0;
+      transition: background-position;
+      &:hover {
+        background-position: 32px 32px;
+      }
+    }
+    &:nth-child(3) {
+      background-position: 64px 0;
+      transition: background-position;
+      &:hover {
+        background-position: 64px 32px;
+      }
+    }
+  }
+}
+#logo {
+  width: 176px;
+  height: 48px;
+  background-image: url('https://kuochinming.github.io/gakki_wall/images/header-logo.svg');
+  background-position: 0 0;
+  transition: background-position;
+  &:hover {
+    background-position: 0 -48px;
+  }
+}
+.hero {
+  margin: 0 -30px;
+  height: 100vh;
+  background-image: url('https://kuochinming.github.io/gakki_wall/images/bg-04.jpg');
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+  .creative {
+    position: absolute;
+    bottom: 0;
+    left: 30px;
+    img {
+      height: 50px;
+    }
+  }
+}
+.title {
+  margin-top: 120px;
+  margin-bottom: 40px;
+  text-align: center;
+  letter-spacing: 4px;
+  font-size: 1.8rem;
+}
+img.tvcm-60sec {
+  width: 100%;
+}
+.tvcm-title {
+  height: 32px;
+  margin-top: 20px;
+}
+.tvcm-card {
+  width: calc(50% - 3px);
+  &:first-child {
+    float:left;
+  }
+  &:last-child {
+    float: right;
+  }
+  h3 {
+    font-size: 13px;
+    margin: 20px 0 10px 0;
+  }
+  img {
+    width: 100%;
+    &:hover {
+      filter: opacity(80%);
+    }
+  }
+}
+.tvcm-caption {
+  margin: auto;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .tvcm-caption-paragraph {
+    font-size: 1.1rem;
+    line-height: 2;
+    margin-top: 10px;
+  }
+  .small-note {
+    margin-top: 20px;
+  }
+}
+.small-note {
+  display: inline-block;
+  font-size: smaller;
+}
+.graphic-box {
+  background-color: #e9e9e9;
+  padding: 30px 30px 100px 30px;
+  color: $bg-color;
+  .graphic-title {
+    margin: 30px 0;
+    text-align: center;
+    font-weight: normal;
+    font-size: 1.1rem;
+  }
+  .graphic-grid {
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr;
+    grid-template-rows: auto auto;
+    grid-gap: 6px;
+    img {
+      width: 100%;
+    }
+  }
+  .graphic-caption {
+    margin-top: 15px;
+    font-size: 13px;
+    .location {
+      display: inline-block;
+      margin: 0 5px;
+    }
+    .city {
+      display: inline-block;
+      border: 1px solid $bg-color;
+      padding: 0 3px;
+      margin: 3px 0;
+    }
+  }
+}
+.making-group-grid {
+  display: grid;
+  grid-template-columns: 0.25fr 0.25fr 0.25fr 0.25fr;
+  grid-template-rows: 0.25fr 0.25fr 0.25fr 0.25fr;
+  grid-gap: 6px;
+  a {
+    &:nth-of-type(1) {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    &:nth-of-type(6), &:nth-of-type(7) {
+      grid-row: span 2;
+    }
+    &:hover {
+      filter: opacity(80%);
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center center;
+    }
+  }
+}
+.schedule {
+  &-caption {
+    text-align: center;
+    font-weight: normal;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+
+  }
+  &-note {
+    text-align: right;
+    font-size: smaller;
+    margin: 10px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 3px solid #666;
+    border-bottom: 3px solid #666;
+    font-size: 1rem;
+    th, td {
+      padding: 15px;
+      width: calc(100% / 3);
+    }
+    th {
+      border-bottom: 3px solid #666;
+      text-align: left;
+      font-weight: normal;
+    }
+    td {
+      border-bottom: 1px solid #666;
+      span {
+        margin-left: 1em;
+      }
+    }
+    #TBS {
+      vertical-align: top;
+    }
+  }
+}
+.official {
+  text-align: center;
+  margin: 50px 0;
+  font-size: 1.2rem;
+}
+.button {
+  padding: 10px 20px;
+  display: inline-block;
+  border: 2px solid #338fe2;
+  border-radius: 6px;
+  background-color: rgba(51, 143, 226, 0.2);
+  color: #338fe2 !important;
+  &:hover {
+    background-color: rgba(51, 143, 226, 0.4);
+  }
+  &:visited {
+    color: #338fe2 !important;
+  }
+}
+footer {
+  background-color: #eee;
+  margin-top: 100vh;
+}
+.footer-logo {
+  height: 48px;
+  width: 176px;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  background-image: url("https://kuochinming.github.io/gakki_wall/images/header-logo.svg");
+  background-position: 0 -48px;
+
+  // text away
+  white-space: nowrap;
+  text-indent: 100%;
+  overflow: hidden;
+}
+.clear-fix:after, .clear-fix:before, .clear-fix {
+  content: "";
+  clear: both;
+  display: block;
+}
