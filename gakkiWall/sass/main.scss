@@ -68,7 +68,7 @@ header {
     width: 32px;
     height: 32px;
     margin-left: 10px;
-    background: url('https://kuochinming.github.io/practice-gakki_wall/images/icon-sns.svg');
+    background: url('../images/icon-sns.svg');
     &:nth-child(1) {
       background-position: 0 0;
       transition: background-position;
@@ -95,7 +95,7 @@ header {
 #logo {
   width: 176px;
   height: 48px;
-  background-image: url('https://kuochinming.github.io/gakki_wall/images/header-logo.svg');
+  background-image: url('../images/header-logo.svg');
   background-position: 0 0;
   transition: background-position;
   &:hover {
@@ -105,7 +105,7 @@ header {
 .hero {
   margin: 0 -30px;
   height: 100vh;
-  background-image: url('https://kuochinming.github.io/gakki_wall/images/bg-04.jpg');
+  background-image: url('../images/bg-04.jpg');
   background-position: center center;
   background-size: cover;
   position: relative;
@@ -296,7 +296,7 @@ footer {
   width: 176px;
   margin: 0 auto;
   background-repeat: no-repeat;
-  background-image: url("https://kuochinming.github.io/gakki_wall/images/header-logo.svg");
+  background-image: url("../images/header-logo.svg");
   background-position: 0 -48px;
 
   // text away
