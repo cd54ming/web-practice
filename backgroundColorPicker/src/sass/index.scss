@@ -1,0 +1,93 @@
+* {
+  box-sizing: border-box;
+}
+html, body {
+  padding: 0;
+  margin: 0;
+}
+html {
+  font-size: 16px;
+}
+body {
+  font-family: 'Raleway', sans-serif;
+  background-color: whitesmoke;
+  overflow: hidden;
+}
+.tooltip {
+  position: absolute;
+  display: inline-block;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  border-radius: 50px;
+  padding: .4rem .8rem;
+  font-size: 0.8rem;
+  color: white;
+  opacity: 0;
+}
+.header {
+  background-color: whitesmoke;
+  width: 100%;
+  height: 4.5rem;
+  position: fixed;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.title {
+  margin: 0;
+  text-transform: capitalize;
+}
+
+$colorPaletteWidth: 180px;
+$colorPaletteContentWdith: $colorPaletteWidth;
+
+.container {
+  margin-top: 4.5rem;
+  padding: 2rem;
+  padding-bottom: 15rem;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  overflow: auto;
+  height: calc(100vh - 80px);
+  position: relative;
+}
+
+.color-palette {
+  float: right;
+  border-radius: 8px;
+  width: $colorPaletteWidth;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
+  box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.2);
+  transition: all 0.5s;
+  position: relative;
+  &:hover{
+    box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.1);
+  }
+  // border: 1px solid rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  // border-radius: 6px;
+  cursor: pointer;
+  &__color {
+    width: $colorPaletteContentWdith;
+    height: $colorPaletteContentWdith;
+  }
+  &__text {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.8);
+  }
+}
