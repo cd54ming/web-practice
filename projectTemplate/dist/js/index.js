@@ -1,0 +1,2 @@
+alert("1234");
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmpzIl0sIm5hbWVzIjpbImFsZXJ0Il0sIm1hcHBpbmdzIjoiQUFBQUEsTUFBTSIsImZpbGUiOiJpbmRleC5qcyIsInNvdXJjZXNDb250ZW50IjpbImFsZXJ0KCcxMjM0Jyk7XG4iXX0=

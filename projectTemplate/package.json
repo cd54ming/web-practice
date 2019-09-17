@@ -1,0 +1,27 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "the index of whole practice",
+  "main": "index.js",
+  "scripts": {
+    "test": "run npm successful"
+  },
+  "author": "KCM",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.0",
+    "gulp-eslint": "^6.0.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-imagemin": "^6.1.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-terser": "^1.2.0",
+    "node-sass": "^4.12.0"
+  },
+  "dependencies": {}
+}
