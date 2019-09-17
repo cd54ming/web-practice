@@ -30,6 +30,10 @@ const practiceData = [{
   name: 'cssAnimation',
   description: 'CSS animation 練習',
   link: 'cssAnimation',
+}, {
+  name: 'CSS background 顏色選擇器',
+  description: '使用 overflow 與給定 height 值，讓頁面滾動到邊界彈回，看起來更具穩定性。實作 Tooltip，偵測滑鼠在元素的位置，並顯示。實作複製頁面內容到使用者剪貼板功能，方便操作。',
+  link: 'backgroundColorPicker/dist',
 }];
 
 window.onload = function instertData() {

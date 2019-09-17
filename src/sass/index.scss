@@ -137,6 +137,7 @@ a {
   &-row {
     padding: findPaddingSize(md);
     display: flex;
+    align-items: center;
     > * {
       flex-basis: 100%;
     }
