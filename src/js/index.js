@@ -37,7 +37,7 @@ const practiceData = [{
 }, {
   name: 'Read Clipboard',
   description: '讀取使用者的 Clipboard 內容',
-  link: 'readClipBoard',
+  link: 'readClipboard',
 }];
 
 window.onload = function instertData() {
