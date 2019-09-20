@@ -1,4 +1,4 @@
-const practiceData = [{
+let practiceData = [{
   name: '學學廣告DM',
   description: 'CSS 排版',
   link: 'XueXueDM',
@@ -38,10 +38,15 @@ const practiceData = [{
   name: 'Read Clipboard',
   description: '讀取使用者的 Clipboard 內容',
   link: 'readClipboard',
+}, {
+  name: 'Todo List',
+  description: '用 JQuery 實作簡易備忘錄，用來比較使用 Vue.js 後的優點',
+  link: 'todoList/dist',
 }];
 
 window.onload = function instertData() {
   const tableBody = document.getElementById('practice-content');
+  practiceData = practiceData.reverse(); // from new to old
   for (let i = 0; i < practiceData.length; i += 1) {
     const newData = document.createElement('a');
     newData.setAttribute('href', practiceData[i].link);

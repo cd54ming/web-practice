@@ -1,6 +1,7 @@
 'use strict';
 
 const gulp = require('gulp');
+const htmlmin = require('gulp-htmlmin');
 const sass = require('gulp-sass');
 sass.compiler = require('node-sass');
 const autoprefixer = require('gulp-autoprefixer');
@@ -13,6 +14,14 @@ const eslint = require('gulp-eslint');
 function errorLog(error) {
   console.error.bind(error);
   this.emit('end');
+}
+
+function html() {
+  return gulp
+    .src('src/*.html')
+    .pipe(htmlmin({ collapseWhitespace: true }))
+    .on('error', errorLog)
+    .pipe(gulp.dest('dist'));
 }
 
 function styles() {
@@ -43,13 +52,13 @@ function scripts() {
 function watch() {
   browserSync.init({
     server: {
-      baseDir: './',
+      baseDir: 'dist',
       index: 'index.html'
     },
     browser: 'google chrome'
   });
-  gulp.watch('src/sass/*.scss').on('change', styles);
-  gulp.watch('*.html').on('change', browserSync.reload);
+  gulp.watch('src/*.html', html).on('change', browserSync.reload);
+  gulp.watch('src/sass/*.scss', styles);
   gulp.watch('src/images').on('change', browserSync.reload);
   gulp.watch('src/js/*.js', scripts).on('change', browserSync.reload);
 };
@@ -61,12 +70,13 @@ function images() {
     .pipe(gulp.dest('dist/images'));
 }
 
+gulp.task('html', html);
 gulp.task('styles', styles);
 gulp.task('scripts', scripts);
 gulp.task('watch', watch);
 gulp.task('images', images);
 
-gulp.task('default', gulp.series('styles', 'scripts', 'watch'));
+gulp.task('default', gulp.series('html', 'styles', 'scripts', 'watch'));
 
 
 
