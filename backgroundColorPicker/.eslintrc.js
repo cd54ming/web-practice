@@ -14,5 +14,6 @@ module.exports = {
     },
     "rules": {
         "no-restricted-globals": "off",
+        "no-plusplus": "off",
     }
 };

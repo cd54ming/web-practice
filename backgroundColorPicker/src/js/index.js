@@ -151,7 +151,7 @@ const colors = [
   'Maroon',
 ];
 
-HTMLElement.prototype.fadeOut = function (duration) {
+HTMLElement.prototype.fadeOut = function fadeOut(duration) {
   this.style.opacity = 1;
   for (let i = 0; i < 100; i++) {
     setTimeout(() => {
@@ -159,7 +159,7 @@ HTMLElement.prototype.fadeOut = function (duration) {
       if (i === 99) { // last time, delete element
         this.remove();
       }
-    }, i * duration / 100); // delay i ms, divide to 100 times.
+    }, i * (duration / 100)); // delay i ms, divide to 100 times.
   }
 };
 
