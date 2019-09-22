@@ -1,1 +1,1 @@
-alert('1234');
+console.log('js success load.');

@@ -151,6 +151,18 @@ const colors = [
   'Maroon',
 ];
 
+HTMLElement.prototype.fadeOut = function (duration) {
+  this.style.opacity = 1;
+  for (let i = 0; i < 100; i++) {
+    setTimeout(() => {
+      this.style.opacity -= 0.01; // -100 times, opacity will equals 0
+      if (i === 99) { // last time, delete element
+        this.remove();
+      }
+    }, i * duration / 100); // delay i ms, divide to 100 times.
+  }
+};
+
 function copyToClipboard(content) {
   const tempTextArea = document.createElement('textarea');
   tempTextArea.value = `background-color: ${content};`;
@@ -159,14 +171,17 @@ function copyToClipboard(content) {
   document.execCommand('Copy');
   tempTextArea.remove();
 }
-function showTooltip() {
-  const tooltip = document.querySelector('.tooltip');
+function showTooltip(text) {
+  const tooltip = document.createElement('span');
+  tooltip.classList.add('tooltip');
+  tooltip.textContent = text;
   const clickPositionY = document.querySelector('.container').scrollTop - document.querySelector('.header').offsetHeight + event.clientY;
   const offsetX = -36;
   const offsetY = 24;
-  tooltip.style.opacity = '1';
   tooltip.style.left = `${event.clientX + offsetX}px`;
   tooltip.style.top = `${clickPositionY + offsetY}px`;
+  tooltip.fadeOut(1500);
+  document.querySelector('.container').append(tooltip);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -191,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
     colorPalette[i].addEventListener('click', () => {
       const color = colorPalette[i].querySelector('.color-palette__text').textContent;
       copyToClipboard(color);
-      showTooltip();
+      showTooltip('Copied!');
       // navigator.clipboard.writeText(color);
     });
   }
