@@ -27,10 +27,6 @@ let practiceData = [{
   description: 'Hahow 動畫互動網頁程式入門課程練習',
   link: 'IDCard/dist',
 }, {
-  name: 'cssAnimation',
-  description: 'CSS animation 練習',
-  link: 'cssAnimation',
-}, {
   name: 'CSS background 顏色選擇器',
   description: '使用 overflow 與給定 height 值，讓頁面滾動到邊界彈回，看起來更具穩定性。實作 Tooltip，偵測滑鼠在元素的位置，並顯示。實作複製頁面內容到使用者剪貼板功能，方便操作。',
   link: 'backgroundColorPicker/dist',
@@ -40,8 +36,12 @@ let practiceData = [{
   link: 'readClipboard',
 }, {
   name: 'Todo List',
-  description: '用 JQuery 實作簡易備忘錄，用來比較使用 Vue.js 後的優點',
+  description: '用 JQuery 實作簡易備忘錄，並將資料儲存在 localStorage 予以保存資料，用來比較使用 Vue.js 後的優點',
   link: 'todoList/dist',
+}, {
+  name: 'sprite image with css animation',
+  description: '使用 sprite 圖片，搭配 CSS animation 播放動畫',
+  link: 'cssAnimation/dist',
 }];
 
 window.onload = function instertData() {

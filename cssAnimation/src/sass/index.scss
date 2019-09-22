@@ -1,0 +1,202 @@
+* {
+  box-sizing: border-box;
+}
+html, body {
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-size: 16px;
+  font-family: sans-serif;
+  background-color: rgba(0, 0, 0, 0.9);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+img {
+  vertical-align: middle;
+}
+
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  > * {
+    margin: 1rem;
+  }
+}
+
+.sprite {
+  background-image: url('../images/mickyMouseSprite.png');
+  width: 360px;
+  height: 314px;
+  animation-name: "mickyMouse";
+  animation-duration:  3070ms;
+  animation-timing-function:  step-start;
+  animation-iteration-count: infinite;
+  animation-play-state: paused;
+  &:hover {
+    animation-play-state: paused !important;
+  }
+}
+.sub-description {
+  font-size: 1.2rem;
+  color: whitesmoke;
+  text-align: center;
+  margin: 0;
+  margin-top: .5rem;
+}
+.description {
+  @extend .sub-description;
+  margin-top: 1rem;
+  text-transform: capitalize;
+}
+@function backgroundPositionX($frame) {
+  @return ((($frame - 1) % 5) * -360px);
+}
+@function backgroundPositionY($frame) {
+  @return ((ceil(($frame / 5)) - 1) * -314px);
+}
+
+@keyframes mickyMouse {
+  0% {
+    background-position: backgroundPositionX(1) backgroundPositionY(1);
+  }
+  2.2222222222222223% {
+    background-position: backgroundPositionX(2) backgroundPositionY(2);
+  }
+  4.444444444444445% {
+    background-position: backgroundPositionX(3) backgroundPositionY(3);
+  }
+  6.666666666666667% {
+    background-position: backgroundPositionX(4) backgroundPositionY(4);
+  }
+  8.88888888888889% {
+    background-position: backgroundPositionX(5) backgroundPositionY(5);
+  }
+  11.11111111111111% {
+    background-position: backgroundPositionX(6) backgroundPositionY(6);
+  }
+  13.333333333333334% {
+    background-position: backgroundPositionX(7) backgroundPositionY(7);
+  }
+  15.555555555555557% {
+    background-position: backgroundPositionX(8) backgroundPositionY(8);
+  }
+  17.77777777777778% {
+    background-position: backgroundPositionX(9) backgroundPositionY(9);
+  }
+  20% {
+    background-position: backgroundPositionX(10) backgroundPositionY(10);
+  }
+  22.22222222222222% {
+    background-position: backgroundPositionX(11) backgroundPositionY(11);
+  }
+  24.444444444444446% {
+    background-position: backgroundPositionX(12) backgroundPositionY(12);
+  }
+  26.666666666666668% {
+    background-position: backgroundPositionX(13) backgroundPositionY(13);
+  }
+  28.88888888888889% {
+    background-position: backgroundPositionX(14) backgroundPositionY(14);
+  }
+  31.111111111111114% {
+    background-position: backgroundPositionX(15) backgroundPositionY(15);
+  }
+  33.333333333333336% {
+    background-position: backgroundPositionX(16) backgroundPositionY(16);
+  }
+  35.55555555555556% {
+    background-position: backgroundPositionX(17) backgroundPositionY(17);
+  }
+  37.77777777777778% {
+    background-position: backgroundPositionX(18) backgroundPositionY(18);
+  }
+  40% {
+    background-position: backgroundPositionX(19) backgroundPositionY(19);
+  }
+  42.22222222222222% {
+    background-position: backgroundPositionX(20) backgroundPositionY(20);
+  }
+  44.44444444444444% {
+    background-position: backgroundPositionX(21) backgroundPositionY(21);
+  }
+  46.66666666666667% {
+    background-position: backgroundPositionX(22) backgroundPositionY(22);
+  }
+  48.88888888888889% {
+    background-position: backgroundPositionX(23) backgroundPositionY(23);
+  }
+  51.111111111111114% {
+    background-position: backgroundPositionX(24) backgroundPositionY(24);
+  }
+  53.333333333333336% {
+    background-position: backgroundPositionX(25) backgroundPositionY(25);
+  }
+  55.55555555555556% {
+    background-position: backgroundPositionX(26) backgroundPositionY(26);
+  }
+  57.77777777777778% {
+    background-position: backgroundPositionX(27) backgroundPositionY(27);
+  }
+  60% {
+    background-position: backgroundPositionX(28) backgroundPositionY(28);
+  }
+  62.22222222222223% {
+    background-position: backgroundPositionX(29) backgroundPositionY(29);
+  }
+  64.44444444444444% {
+    background-position: backgroundPositionX(30) backgroundPositionY(30);
+  }
+  66.66666666666667% {
+    background-position: backgroundPositionX(31) backgroundPositionY(31);
+  }
+  68.88888888888889% {
+    background-position: backgroundPositionX(32) backgroundPositionY(32);
+  }
+  71.11111111111111% {
+    background-position: backgroundPositionX(33) backgroundPositionY(33);
+  }
+  73.33333333333334% {
+    background-position: backgroundPositionX(34) backgroundPositionY(34);
+  }
+  75.55555555555556% {
+    background-position: backgroundPositionX(35) backgroundPositionY(35);
+  }
+  77.77777777777779% {
+    background-position: backgroundPositionX(36) backgroundPositionY(36);
+  }
+  80% {
+    background-position: backgroundPositionX(37) backgroundPositionY(37);
+  }
+  82.22222222222223% {
+    background-position: backgroundPositionX(38) backgroundPositionY(38);
+  }
+  84.44444444444444% {
+    background-position: backgroundPositionX(39) backgroundPositionY(39);
+  }
+  86.66666666666667% {
+    background-position: backgroundPositionX(40) backgroundPositionY(40);
+  }
+  88.88888888888889% {
+    background-position: backgroundPositionX(41) backgroundPositionY(41);
+  }
+  91.11111111111111% {
+    background-position: backgroundPositionX(42) backgroundPositionY(42);
+  }
+  93.33333333333334% {
+    background-position: backgroundPositionX(43) backgroundPositionY(43);
+  }
+  95.55555555555556% {
+    background-position: backgroundPositionX(44) backgroundPositionY(44);
+  }
+  97.77777777777779% {
+    background-position: backgroundPositionX(45) backgroundPositionY(45);
+  }
+  100% {
+    background-position: backgroundPositionX(46) backgroundPositionY(46);
+  }
+}
