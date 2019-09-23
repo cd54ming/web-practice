@@ -140,6 +140,9 @@ a {
     align-items: center;
     > * {
       flex-basis: 100%;
+      &:first-child {
+        text-transform: capitalize;
+      }
     }
   }
 }

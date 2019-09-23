@@ -11,6 +11,10 @@ let practiceData = [{
   description: 'CSS grid-box 排版',
   link: 'gakkiWall',
 }, {
+  name: 'Grid Box Responsive Layout Practice',
+  description: 'CSS Grid Box 響應式排版練習',
+  link: 'gridResponsiveLayout/dist',
+}, {
   name: 'Remember To Breathe',
   description: '全螢幕影片背景',
   link: 'rememberToBreathe',
