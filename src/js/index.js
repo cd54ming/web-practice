@@ -41,11 +41,11 @@ let practiceData = [{
 }, {
   name: 'Todo List',
   description: '使用 JQuery 實作簡易備忘錄，將資料儲存在 localStorage，使網頁重載後不會消失。<br>用來比較使用 Vue.js 後的優點。',
-  link: 'todoList/dist',
+  link: 'todoList/dist/index.html',
 }, {
   name: 'sprite image with CSS animation',
   description: '使用 sprite 圖片，搭配 CSS animation 達到動畫圖片效果。',
-  link: 'cssAnimation/dist',
+  link: 'cssAnimation/dist/index.html',
 }, {
   name: '可收合 sidebar',
   description: '使用 CSS transition 搭配 flex 實作 sidebar slide in 特效',
