@@ -46,6 +46,10 @@ let practiceData = [{
   name: 'sprite image with CSS animation',
   description: '使用 sprite 圖片，搭配 CSS animation 達到動畫圖片效果。',
   link: 'cssAnimation/dist',
+}, {
+  name: '可收合 sidebar',
+  description: '使用 CSS transition 搭配 flex 實作 sidebar slide in 特效',
+  link: 'collapseSidebar/dist',
 }];
 
 window.onload = function instertData() {

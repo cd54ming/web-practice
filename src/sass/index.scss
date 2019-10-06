@@ -1,22 +1,28 @@
 $fontColor: rgb(235, 235, 235);
 $borderRadius: 8px;
 $borderColor: red;
-$primeColor:  rgb(35, 35, 45);
+$primeColor: rgb(35, 35, 45);
 
 $backgroundColor: (
   pageBackgroundColor: rgb(235, 235, 235),
   tableHeaderBackgroundColor: $primeColor,
   tableBodyBackgroundColor: rgb(255, 255, 255),
-  hoverBackgroundColor: rgb(240, 240, 240),
+  hoverBackgroundColor: rgb(240, 240, 240)
 );
 
 $fontSize: (
-  xx-lg: 1.75rem, // 28px
-  x-lg: 1.5rem, // 24px
-  lg: 1.25rem, // 20px
-  md: 1rem, // 16px
-  sm: 0.75rem, // 12px
-  x-sm: 0.5rem, // 8px
+  xx-lg: 1.75rem,
+  // 28px
+    x-lg: 1.5rem,
+  // 24px
+    lg: 1.25rem,
+  // 20px
+    md: 1rem,
+  // 16px
+    sm: 0.75rem,
+  // 12px
+    x-sm: 0.5rem,
+  // 8px
 );
 
 $paddingSize: (
@@ -26,7 +32,7 @@ $paddingSize: (
   md: 1rem,
   sm: 0.75rem,
   x-sm: 0.5rem,
-  xx-sm: 0.25rem,
+  xx-sm: 0.25rem
 );
 
 @function checkKeyInMap($map, $key) {
@@ -86,7 +92,8 @@ html {
   font-size: 16px;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
@@ -130,7 +137,7 @@ a {
     @include fontSize(md);
     @include backgroundColor(tableBodyBackgroundColor);
     .table-row:hover {
-      transition: background-color .5s;
+      transition: background-color 0.5s;
       @include backgroundColor(hoverBackgroundColor);
     }
   }
