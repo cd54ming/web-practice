@@ -39,9 +39,13 @@ let practiceData = [{
   description: '使用 JavaScript 讀取使用者的 clipboard 內容。',
   link: 'readClipboard',
 }, {
-  name: 'Todo List',
+  name: 'To-Do List',
   description: '使用 JQuery 實作簡易備忘錄，將資料儲存在 localStorage，使網頁重載後不會消失。<br>用來比較使用 Vue.js 後的優點。',
   link: 'todoList/dist/index.html',
+}, {
+  name: 'To-Do List',
+  description: '複習 To-Do List',
+  link: 'todoList2/dist/index.html',
 }, {
   name: 'sprite image with CSS animation',
   description: '使用 sprite 圖片，搭配 CSS animation 達到動畫圖片效果。',

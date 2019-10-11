@@ -22,6 +22,7 @@ function showTodo() {
     });
     id = (!todos.length) ? 0 : Number(todos[todos.length - 1].id) + 1;
   }
+  console.log(todos);
 }
 
 $(document).ready(() => {
@@ -38,9 +39,9 @@ $(document).ready(() => {
         id,
       },
     );
+    $('.input[name=todo]').val('');
     setData();
     showTodo();
-    $('.input[name=todo]').val('');
   });
   // toggle completed
   $('.list').on('click', '.list-item__action', (e) => {
