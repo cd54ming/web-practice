@@ -47,6 +47,10 @@ let practiceData = [{
   description: '複習 To-Do List',
   link: 'todoList2/dist/index.html',
 }, {
+  name: 'To-Do List Vue version',
+  description: '使用 Vue 實作 To-Do list, 學習 Vue 開發',
+  link: 'todoListVue/dist',
+}, {
   name: 'sprite image with CSS animation',
   description: '使用 sprite 圖片，搭配 CSS animation 達到動畫圖片效果。',
   link: 'cssAnimation/dist/index.html',
