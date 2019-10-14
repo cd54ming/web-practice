@@ -110,6 +110,10 @@ a {
   color: inherit;
 }
 
+.align-right {
+  text-align: right;
+}
+
 .table {
   &-header {
     display: flex;
@@ -150,6 +154,10 @@ a {
       &:first-child {
         text-transform: capitalize;
       }
+    }
+    .date {
+      width: 150px;
+      flex: 0 0 auto;
     }
   }
 }

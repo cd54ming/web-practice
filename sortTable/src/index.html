@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+  <link rel="stylesheet" href="css/index.css">
+  <title>Sort Table</title>
+</head>
+
+<body>
+
+  <main id="app">
+    <table>
+      <colgroup>
+        <col>
+        <col>
+        <col>
+      </colgroup>
+      <thead>
+        <tr>
+          <th>品名</th>
+          <th class="sort-title" @click="sort('price')">
+            價格
+            <i class="icon-arrow fas fa-chevron-up" :class="{ 'reverse' : priceAscending }" v-if="sortRule === 'price'"></i>
+          </th>
+          <th class="sort-title" @click="sort('expiryDate')">
+            到期日
+            <i class="icon-arrow fas fa-chevron-up" :class="{ 'reverse' : expiryDateAscending }" v-if="sortRule === 'expiryDate'"></i>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="item" v-for="item in sortedData" :key="item.name">
+          <td class="item__name">{{ item.name }}</td>
+          <td class="item__price">{{ item.price }}</td>
+          <td class="item__date">{{ item.expiryDate }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <script src="js/index.js"></script>
+</body>
+
+</html>

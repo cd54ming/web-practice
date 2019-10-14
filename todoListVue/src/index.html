@@ -21,7 +21,7 @@
         <ul class="todo-list">
           <li class="todo-list__todo todo" v-for="todo in uncompletedTodos"
             :class="{'editing' : editingTodo.id === todo.id}">
-            <input class="todo__check" @click.prevent="todo.completed = !todo.completed" type="checkbox" :id="todo.id">
+            <input class="todo__check" @click.prevent="todo.completed = !todo.completed" :checked="todo.completed" type="checkbox" :id="todo.id">
             <p class="todo__content" :class="{'completed' : todo.completed}" @click="editTodo(todo)"
               v-if="editingTodo.id !== todo.id">{{ todo.content }}</p>
             <input class="todo__edit" type="text" v-if="editingTodo.id === todo.id" v-model="editingTodo.content"
@@ -34,7 +34,7 @@
         <ul class="todo-list">
           <li class="todo-list__todo todo" v-for="todo in completedTodos"
             :class="{'editing' : editingTodo.id === todo.id}">
-            <input class="todo__check" @click.prevent="todo.completed = !todo.completed" type="checkbox" :id="todo.id">
+            <input class="todo__check" @click.prevent="todo.completed = !todo.completed" :checked="todo.completed" type="checkbox" :id="todo.id">
             <p class="todo__content" :class="{'completed' : todo.completed}" @click="editTodo(todo)"
               v-if="editingTodo.id !== todo.id">{{ todo.content }}</p>
             <input class="todo__edit" type="text" v-if="editingTodo.id === todo.id" v-model="editingTodo.content"
