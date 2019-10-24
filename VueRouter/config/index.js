@@ -38,12 +38,12 @@ module.exports = {
 
   build: {
     // Template for index.html
-    index: path.resolve(__dirname, '../dist/index.html'),
+    index: path.resolve(__dirname, 'https://kuochinming.github.io/Web-Practice/VueRouter/dist/index.html'),
 
     // Paths
-    assetsRoot: path.resolve(__dirname, '../dist'),
+    assetsRoot: path.resolve(__dirname, 'https://kuochinming.github.io/Web-Practice/VueRouter/dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/Web-Practice/VueRouter/',
+    assetsPublicPath: 'https://kuochinming.github.io/Web-Practice/VueRouter/',
 
     /**
      * Source Maps
