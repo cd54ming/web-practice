@@ -57,7 +57,8 @@ new Vue({
     },
   },
   created() {
-    const api = 'http://opendata2.epa.gov.tw/AQI.json';
+    // API resource: https://opendata.epa.gov.tw/Data/Contents/AQI/
+    const api = 'https://opendata.epa.gov.tw/api/v1/AQI?format=json';
     const xhr = new XMLHttpRequest();
     xhr.open('GET', api);
     xhr.send();
