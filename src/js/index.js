@@ -46,17 +46,17 @@ let practiceData = [{
 }, {
   name: 'Read Clipboard',
   description: '使用 JavaScript 讀取使用者的 clipboard 內容。',
-  link: 'readClipboard',
+  link: 'readClipboard/index.html',
   date: '2019/10/14',
 }, {
   name: 'To-Do List',
   description: '使用 JQuery 實作簡易備忘錄，將資料儲存在 localStorage，使網頁重載後不會消失。<br>用來比較使用 Vue.js 後的優點。',
-  link: 'todoList/dist/index.html',
+  link: 'todoList/dist',
   date: '2019/10/14',
 }, {
   name: 'To-Do List',
   description: '複習 To-Do List',
-  link: 'todoList2/dist/index.html',
+  link: 'todoList2/dist',
   date: '2019/10/14',
 }, {
   name: 'To-Do List Vue version',
