@@ -43,7 +43,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: 'https://kuochinming.github.io/Web-Practice/VueRouter/',
+    assetsPublicPath: '/Web-Practice/VueRouter/',
 
     /**
      * Source Maps
