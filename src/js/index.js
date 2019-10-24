@@ -78,6 +78,16 @@ let practiceData = [{
   description: '點選 table 標題，排序 table 中的資料。 練習 Vue',
   link: 'sortTable/dist',
   date: '2019/10/14',
+}, {
+  name: 'Vue Router',
+  description: '練習使用 vue router 來切換頁面',
+  link: 'VueRouter/',
+  date: '2019/10/24',
+}, {
+  name: '空氣品質指標',
+  description: '串接行政院環境保護署opendata API，顯示各縣市監測站 AQI，並可添加關注城市，練習使用 Vue component, props 與 $emit',
+  link: 'airQuality/dist',
+  date: '2019/10/24',
 }];
 
 window.onload = function instertData() {
