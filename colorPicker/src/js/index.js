@@ -165,7 +165,7 @@ HTMLElement.prototype.fadeOut = function fadeOut(duration) {
 
 function copyToClipboard(content) {
   const tempTextArea = document.createElement('textarea');
-  tempTextArea.value = `background-color: ${content};`;
+  tempTextArea.value = `${content}`;
   document.body.appendChild(tempTextArea);
   tempTextArea.select();
   document.execCommand('Copy');
