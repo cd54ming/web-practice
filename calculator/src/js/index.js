@@ -1,5 +1,4 @@
-//tutorial: https://www.youtube.com/watch?v=j59qQ7YWLxw&list=LLHkDwG70IPcdHxUOQEXfZMw
-
+// tutorial: https://www.youtube.com/watch?v=j59qQ7YWLxw&list=LLHkDwG70IPcdHxUOQEXfZMw
 class Calculator {
   constructor(previousOperandTextElement, currentOperandTextElement) {
     this.previousOperandTextElement = previousOperandTextElement;
@@ -8,9 +7,9 @@ class Calculator {
   }
 
   clear() {
-    this.previousOperand = "";
-    this.currentOperand = "";
-    this.operator = "";
+    this.previousOperand = '';
+    this.currentOperand = '';
+    this.operator = '';
   }
 
   delete() {
@@ -25,66 +24,66 @@ class Calculator {
       return;
     }
     switch (this.operator) {
-      case "÷":
+      case '÷':
         result = prev / current;
         break;
-      case "/": //for keyboard
+      case '/': // for keyboard
         result = prev / current;
         break;
-      case "×":
+      case '×':
         result = prev * current;
         break;
-      case "*": //for keyboard
+      case '*': // for keyboard
         result = prev * current;
         break;
-      case "+":
+      case '+':
         result = prev + current;
         break;
-      case "-":
+      case '-':
         result = prev - current;
         break;
-      case "%":
+      case '%':
         result = prev % current;
         break;
       default:
         return;
     }
     this.currentOperand = result;
-    this.previousOperand = this.operator = "";
+    this.previousOperand = this.operator = '';
   }
 
   appendNumber(number) {
-    if (number === "." && this.currentOperand.toString().includes(number)) {
+    if (number === '.' && this.currentOperand.toString().includes(number)) {
       return;
     }
     this.currentOperand = this.currentOperand.toString() + number.toString();
   }
 
   chooseOperator(operator) {
-    if (this.currentOperand === "") {
+    if (this.currentOperand === '') {
       if (!isNaN(parseFloat(this.previousOperand))) {
         this.operator = operator;
       }
       return;
     }
-    if (this.previousOperand !== "") {
+    if (this.previousOperand !== '') {
       this.compute();
     }
     this.operator = operator;
     this.previousOperand = this.currentOperand;
-    this.currentOperand = "";
+    this.currentOperand = '';
   }
 
   getDisplayNumber(number) {
     const stringNumber = number.toString();
-    let integerDigits = parseFloat(stringNumber.split(".")[0]);
-    let decimalDigits = stringNumber.split(".")[1];
+    let integerDigits = parseFloat(stringNumber.split('.')[0]);
+    let decimalDigits = stringNumber.split('.')[1];
     let integerDisplay;
     if (isNaN(integerDigits)) {
-      integerDisplay = "";
+      integerDisplay = '';
     } else {
-      integerDisplay = integerDigits.toLocaleString("en", {
-        maximumFractionDigits: 0
+      integerDisplay = integerDigits.toLocaleString('en', {
+        maximumFractionDigits: 0,
       });
     }
     if (decimalDigits != null) {
@@ -103,60 +102,80 @@ class Calculator {
   }
 }
 
-const numberButtons = document.querySelectorAll("[data-number]");
-const operatorButtons = document.querySelectorAll("[data-operator]");
-const deleteButton = document.querySelector("[data-delete]");
-const clearButton = document.querySelector("[data-clear]");
-const equalsButton = document.querySelector("[data-equals]");
-const previousOperandText = document.querySelector("[data-previous-operand]");
-const currentOperandText = document.querySelector("[data-current-operand]");
+const numberButtons = document.querySelectorAll('[data-number]');
+const operatorButtons = document.querySelectorAll('[data-operator]');
+const deleteButton = document.querySelector('[data-delete]');
+const clearButton = document.querySelector('[data-clear]');
+const equalsButton = document.querySelector('[data-equals]');
+const previousOperandText = document.querySelector('[data-previous-operand]');
+const currentOperandText = document.querySelector('[data-current-operand]');
 
 const calculator = new Calculator(previousOperandText, currentOperandText);
 
 numberButtons.forEach(button => {
-  button.addEventListener("click", () => {
+  button.addEventListener('click', () => {
     calculator.appendNumber(button.innerText);
     calculator.updateDisplay();
   });
 });
 
 operatorButtons.forEach(button => {
-  button.addEventListener("click", () => {
+  button.addEventListener('click', () => {
     calculator.chooseOperator(button.innerText);
     calculator.updateDisplay();
   });
 });
 
-equalsButton.addEventListener("click", () => {
+equalsButton.addEventListener('click', () => {
   calculator.compute();
   calculator.updateDisplay();
 });
 
-clearButton.addEventListener("click", () => {
+clearButton.addEventListener('click', () => {
   calculator.clear();
   calculator.updateDisplay();
 });
 
-deleteButton.addEventListener("click", () => {
+deleteButton.addEventListener('click', () => {
   calculator.delete();
   calculator.updateDisplay();
 });
 
-const numberArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."];
-document.addEventListener("keydown", function(e) {
+const numberArr = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.'];
+document.addEventListener('keydown', function(e) {
   if (numberArr.includes(e.key)) {
     calculator.appendNumber(e.key);
-  } else if (e.key === "Backspace") {
+  } else if (e.key === 'Backspace') {
     calculator.delete();
   } else if (
-    e.key === "-" ||
-    e.key === "/" ||
-    (e.shiftKey && (e.key === "+" || e.key === "*" || e.key === "%"))
+    e.key === '-' ||
+    e.key === '/' ||
+    (e.shiftKey && (e.key === '+' || e.key === '*' || e.key === '%'))
   ) {
     calculator.chooseOperator(e.key);
-  } else if (e.key === "Enter" || e.key === "=") {
+  } else if (e.key === 'Enter' || e.key === '=') {
     calculator.compute();
   }
   calculator.updateDisplay();
   console.log(e);
+});
+
+const colorThemeSwitch = document.querySelector('#colorTheme');
+const colorTheme = localStorage.getItem('colorTheme');
+if (colorTheme === 'dark') {
+  colorThemeSwitch.checked = true;
+  document.documentElement.setAttribute('data-theme', 'dark');
+} else {
+  // if colorTheme === null will goes here
+  colorThemeSwitch.checked = false;
+  document.documentElement.setAttribute('data-theme', 'light');
+}
+colorThemeSwitch.addEventListener('change', function() {
+  if (this.checked) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('colorTheme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+    localStorage.setItem('colorTheme', 'light');
+  }
 });

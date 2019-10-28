@@ -1,4 +1,4 @@
-const app = new Vue({
+new Vue({
   el: '#app',
   data: {
     data: [
@@ -64,9 +64,9 @@ const app = new Vue({
     sortedData() {
       const rule = this.sortRule;
       if (this.ascending) {
-        return this.data.sort((a, b) => (a[rule] - b[rule]));
+        return this.data.sort((a, b) => a[rule] - b[rule]);
       }
-      return this.data.sort((a, b) => (b[rule] - a[rule]));
+      return this.data.sort((a, b) => b[rule] - a[rule]);
     },
   },
   mounted() {

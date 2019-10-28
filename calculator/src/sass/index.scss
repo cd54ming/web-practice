@@ -1,14 +1,49 @@
+// inspired by https://dribbble.com/shots/4582266-Android-P-Calculator
 *,
 *::after,
 *::before {
   box-sizing: border-box;
   font-family: sans-serif;
+  transition: all 0.5s;
+}
+[data-theme="light"] {
+  --body-bg: #cfdef3; //linear-gradient(to bottom, #e0eafc, #cfdef3);
+  --color-theme-button: #29323c;
+  --calculator-bg: rgba(255, 255, 255, 0.8);
+  --current-operand-font: rgba(0, 0, 0, 0.9);
+  --output-font: rgba(0, 0, 0, 0.6);
+  --border: rgba(230, 230, 230, 1);
+  --normal-button-bg: rgba(235, 235, 235, 0.6);
+  --normal-button-font: rgba(0, 0, 0, 0.7);
+  --red-button-font: rgba(178, 34, 34, 0.65);
+  --red-button-bg: rgba(178, 34, 34, 0.08);
+  --purple-button-font: rgba(138, 43, 226, 0.65);
+  --purple-button-bg: rgba(138, 43, 226, 0.08);
+  --green-button-font: rgba(15, 119, 79, 0.65);
+  --green-button-bg: rgba(0, 250, 154, 0.2);
+}
+[data-theme="dark"] {
+  --body-bg: #29323c; //linear-gradient(to bottom, #485563, #29323c);
+  --color-theme-button: #cfdef3;
+  --calculator-bg: rgba(0, 0, 0, 0.6);
+  --current-operand-font: rgba(255, 255, 255, 1);
+  --output-font: rgba(255, 255, 255, 0.8);
+  --border: rgba(255, 255, 255, 0.15);
+  --normal-button-bg: rgba(0, 0, 0, 0.6);
+  --normal-button-font: rgba(255, 255, 255, 0.85);
+  --red-button-font: rgba(178, 34, 34, 0.8);
+  --red-button-bg: rgba(178, 34, 34, 0.15);
+  --purple-button-font: rgba(138, 43, 226, 1);
+  --purple-button-bg: rgba(138, 43, 226, 0.15);
+  --green-button-font: rgba(0, 250, 154, 0.8);
+  --green-button-bg: rgba(0, 250, 154, 0.15);
 }
 body {
   font-size: 16px;
   padding: 0;
   margin: 0;
-  background-image: linear-gradient(to bottom, #485563, #29323c);
+  // background-image: var(--body-bg);
+  background-color: var(--body-bg);
   background-repeat: none;
   overflow: hidden;
   display: flex;
@@ -24,28 +59,27 @@ body {
   grid-template-columns: repeat(4, 60px);
   grid-template-rows: minmax(120px, auto) repeat(5, 60px);
   gap: 10px;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: var(--calculator-bg);
   padding: 1.2rem;
   border-radius: 8px;
 }
 .output {
   grid-column: 1 / -1;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--output-font);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
   padding: 1rem 0;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.15);
-  margin-bottom: .5rem;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 0.5rem;
   word-wrap: break-word;
   word-break: break-all;
   text-align: right;
   .previous-operand {
-
   }
   .current-operand {
-    color: white;
+    color: var(--current-operand-font);
     font-size: 1.8rem;
   }
 }
@@ -59,22 +93,79 @@ body {
   margin: 0;
   border-radius: 8px;
   border: none;
-  color: rgba(255, 255, 255, 0.85);
-  background-color: rgba(0, 0, 0, 0.4);
-  transition: background-color .5s;
+  color: var(--normal-button-font);
+  background-color: var(--normal-button-bg);
   &:focus {
     outline: none;
   }
   &.color-red {
-    color: rgba(firebrick, 0.8);
-    background-color: rgba(firebrick, 0.15);
+    color: var(--red-button-font);
+    background-color: var(--red-button-bg);
   }
   &.color-purple {
-    color: rgba(blueviolet, 1);
-    background-color: rgba(blueviolet, 0.15);
+    color: var(--purple-button-font);
+    background-color: var(--purple-button-bg);
   }
   &.color-green {
-    color: rgba(MediumSpringGreen, 0.8);
-    background-color: rgba(MediumSpringGreen, 0.15);
+    color: var(--green-button-font);
+    background-color: var(--green-button-bg);
+  }
+}
+
+$nightBtn: #29323c;
+$dayBtn: #cfdef3;
+.dayNight {
+  cursor: pointer;
+  position: absolute;
+  top: 36px;
+  right: 36px;
+  input {
+    display: none;
+    & + div {
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      position: relative;
+      box-shadow: inset 16px -16px 0 0 $nightBtn;
+      transform: scale(1) rotate(-2deg);
+      transition: box-shadow 0.5s ease 0s, transform 0.4s ease 0.1s;
+      &:before {
+        content: "";
+        width: inherit;
+        height: inherit;
+        border-radius: inherit;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transition: background 0.3s ease;
+      }
+      &:after {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        margin: -4px 0 0 -4px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        box-shadow: 0 -23px 0 $dayBtn, 0 23px 0 $dayBtn, 23px 0 0 $dayBtn, -23px 0 0 $dayBtn, 15px 15px 0 $dayBtn,
+          -15px 15px 0 $dayBtn, 15px -15px 0 $dayBtn, -15px -15px 0 $dayBtn;
+        transform: scale(0);
+        transition: all 0.3s ease;
+      }
+    }
+    &:checked + div {
+      box-shadow: inset 32px -32px 0 0 $nightBtn;
+      transform: scale(0.5) rotate(0deg);
+      transition: transform 0.3s ease 0.1s, box-shadow 0.2s ease 0s;
+      &:before {
+        background: $dayBtn;
+        transition: background 0.3s ease 0.1s;
+      }
+      &:after {
+        transform: scale(1.5);
+        transition: transform 0.5s ease 0.15s;
+      }
+    }
   }
 }

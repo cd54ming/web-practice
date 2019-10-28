@@ -22,9 +22,9 @@ const card = {
         default:
           return;
       }
-    }
+    },
   },
-}
+};
 
 new Vue({
   el: '#app',
@@ -32,28 +32,30 @@ new Vue({
     location: [],
     staredData: [],
     data: [],
-    filterWord: 'all',
+    filterWord: 'default',
   },
   methods: {
     star(data) {
       if (!this.staredData.find(item => item.SiteId === data.SiteId)) {
         this.staredData.push(data);
       } else {
-        this.staredData = this.staredData.filter(item => item.SiteId !== data.SiteId);
+        this.staredData = this.staredData.filter(
+          item => item.SiteId !== data.SiteId
+        );
       }
     },
   },
   watch: {
     staredData() {
       localStorage.setItem('staredData', JSON.stringify(this.staredData));
-    }
+    },
   },
   computed: {
     filteredData() {
-      if (this.filterWord === 'all') {
-        return this.data;
+      if (this.filterWord === 'all' || this.filterWord === 'default') {
+        return this.data.sort((prev, current) => prev.AQI - current.AQI);
       }
-      return this.data.filter(item => item.County === this.filterWord);
+      return this.data.filter(item => item.County === this.filterWord).sort((prev, current) => prev.AQI - current.AQI);
     },
   },
   created() {
@@ -62,7 +64,7 @@ new Vue({
     const xhr = new XMLHttpRequest();
     xhr.open('GET', api);
     xhr.send();
-    xhr.onload = (result) => {
+    xhr.onload = result => {
       const response = JSON.parse(result.currentTarget.response);
       this.data = response;
       this.staredData = JSON.parse(localStorage.getItem('staredData')) || [];
@@ -77,7 +79,7 @@ new Vue({
           }
         });
       });
-    }
+    };
   },
   components: {
     card,
