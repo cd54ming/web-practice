@@ -1,127 +1,153 @@
 // tutorial: https://www.youtube.com/watch?v=j59qQ7YWLxw&list=LLHkDwG70IPcdHxUOQEXfZMw
+
+// issue:
+//  4.8 / 3 = 1.5999999999999999
+//  input parentheses
+//  negative number
+
 class Calculator {
-  constructor(operationTextElement) {
+  constructor(
+    operationTextElement,
+    instantResultTextElement,
+    operatorCollection
+  ) {
     this.operationTextElement = operationTextElement;
+    this.instantResultTextElement = instantResultTextElement;
+    this.operatorCollection = operatorCollection;
     this.clear();
   }
 
   clear() {
     this.operation = '';
+    this.instantResult = '';
     this.currentNumber = '';
-    this.currentOperator = undefined;
   }
 
   delete() {
-    this.operation = this.operation.toString().slice(0, -1);
+    this.operation = this.operation.slice(0, -1);
   }
 
+  appendNumber(number) {
+    if (number === '.' && this.currentNumber.includes('.')) {
+      return;
+    }
+    this.currentNumber += number.toString();
+    this.operation += number.toString();
+  }
+
+  appendOperator(operator) {
+    const lastChar = this.operation[this.operation.length - 1];
+    if (!lastChar) {
+      this.operation += '0';
+    }
+    // if last char already is a operator, then repalce
+    if (this.operatorCollection.includes(lastChar)) {
+      this.operation = this.operation.slice(0, -1);
+    }
+    this.operation += operator.toString();
+    this.currentNumber = '';
+  }
+
+  // input a operation string, split by operator, and output a array
   operationToArray(operationString) {
     let number = '';
-    let operationArray = [];
-    const operator = '+-*/%';
+    const operationArray = [];
     for (let i = 0; i < operationString.length; i++) {
-      if (operator.includes(operationString[i])) {
+      if (this.operatorCollection.includes(operationString[i])) {
         operationArray.push(number, operationString[i]);
         number = '';
       } else {
-        number += operationString[i].toString();
+        number += operationString[i];
       }
     }
-    operationArray.push(number);
+    if (number !== '') {
+      operationArray.push(number);
+    }
     return operationArray;
   }
 
+  // input a opeartion array, output to a postfix array
   toPostfix(operationArray) {
-    let operationPostfix = [];
+    const operationPostfix = [];
     const operatorStack = [];
+    const heavyOperator = '*/%';
+    const lightOperator = '+-';
     for (let i = 0; i < operationArray.length; i++) {
-      if (!Number(operationArray[i])) {
-        // operation[i] is a operator
-        if (operatorStack.length !== 0) {
+      if (this.operatorCollection.includes(operationArray[i])) {
+        if (operatorStack.length === 0) {
+          operatorStack.push(operationArray[i]);
+        } else {
+          const uppermostOperator = operatorStack[operatorStack.length - 1];
           if (
-            (operationArray[i] === '*' ||
-              operationArray[i] === '/' ||
-              operationArray[i] === '%') &&
-            (operatorStack[operatorStack.length - 1] === '+' ||
-              operatorStack[operatorStack.length - 1] === '-')
+            heavyOperator.includes(operationArray[i]) &&
+            lightOperator.includes(uppermostOperator)
           ) {
             operatorStack.push(operationArray[i]);
           } else {
             operationPostfix.push(operatorStack.pop());
             operatorStack.push(operationArray[i]);
           }
-        } else {
-          operatorStack.push(operationArray[i]);
         }
       } else {
-        // operatoin[i] is a operand
         operationPostfix.push(operationArray[i]);
       }
     }
-    let operatorStackHeight = operatorStack.length;
-    for (let i = 0; i < operatorStackHeight; i++) {
+    while (operatorStack.length > 0) {
       operationPostfix.push(operatorStack.pop());
     }
     return operationPostfix;
   }
 
   compute() {
-    const operationArray = this.operationToArray(this.operation);
+    this.instantResult = this.operation;
+    const operationArray = this.operationToArray(this.instantResult);
     const operationPostfix = this.toPostfix(operationArray);
-    const operator = '+-*/%';
-    let result = [];
-    for (let i = 0; i < operationPostfix.length; i++) {
-      if (operator.includes(operationPostfix[i])) {
-        let secondOperand = result.pop();
-        let firstOperand = result.pop();
-        switch (operationPostfix[i]) {
+    const result = [];
+    operationPostfix.forEach(operation => {
+      if (this.operatorCollection.includes(operation)) {
+        const secondOperation = result.pop();
+        const firstOperation = result.pop();
+        switch (operation) {
           case '+':
-            result.push(firstOperand + secondOperand);
+            result.push(firstOperation + secondOperation);
             break;
           case '-':
-            result.push(firstOperand - secondOperand);
+            result.push(firstOperation - secondOperation);
             break;
           case '*':
-            result.push(firstOperand * secondOperand);
+            result.push(firstOperation * secondOperation);
             break;
           case '/':
-            result.push(firstOperand / secondOperand);
+            result.push(firstOperation / secondOperation);
             break;
           case '%':
-            result.push(firstOperand % secondOperand);
+            result.push(firstOperation % secondOperation);
             break;
         }
       } else {
-        result.push(Number(operationPostfix[i]));
+        result.push(Number(operation));
       }
-    }
-    this.operation = result[0].toString();
+    });
+    this.instantResult =
+      isNaN(result[0]) || result[0] === Infinity ? NaN : result[0].toString();
   }
 
-  addNumber(number) {
-    if (number === '.' && this.currentNumber.includes('.')) {
-      return;
-    }
-    this.currentNumber = this.currentNumber.toString() + number.toString();
-    this.operation = this.operation.toString() + number.toString();
-  }
-
-  chooseOperator(operator) {
-    if (!isNaN(this.operation[this.operation.length - 1])) {
-      // the last element is a number
-      this.operation = this.operation.toString() + operator.toString();
+  getResult() {
+    if (isNaN(this.instantResult)) {
+      console.log('不要隨便亂輸入好嗎? 防呆很累');
+    } else if (this.instantResult === '') {
+      console.log('看起來你不需要計算');
     } else {
-      // the last element is operator
-      this.operation = this.operation.slice(0, -1);
-      this.operation = this.operation.toString() + operator.toString();
+      this.operation = this.instantResult;
+      this.instantResult = '';
     }
-    this.currentNumber = '';
   }
 
+  // add ',' to number
   getDisplayNumber(number) {
-    const stringNumber = number.toString();
-    let integerDigits = parseFloat(stringNumber.split('.')[0]);
-    let decimalDigits = stringNumber.split('.')[1];
+    const numberString = number.toString();
+    const integerDigits = parseFloat(numberString.split('.')[0]);
+    const decimalDigits = numberString.split('.')[1]; // decimalDigits is a string
     let integerDisplay;
     if (isNaN(integerDigits)) {
       integerDisplay = '';
@@ -136,8 +162,27 @@ class Calculator {
     return integerDisplay;
   }
 
+  getDisplay(operationArray) {
+    let display = '';
+    operationArray.forEach(operation => {
+      if (this.operatorCollection.includes(operation)) {
+        display += operation;
+      } else {
+        display += this.getDisplayNumber(operation);
+      }
+    });
+    return display;
+  }
+
   updateDisplay() {
-    this.operationTextElement.innerText = this.operation;
+    const operationArray = this.operationToArray(this.operation);
+    this.operationTextElement.innerText = this.getDisplay(operationArray);
+    if (isNaN(this.instantResult)) {
+      this.instantResultTextElement.innerText = '';
+    } else {
+      const resultArray = this.operationToArray(this.instantResult);
+      this.instantResultTextElement.innerText = this.getDisplay(resultArray);
+    }
   }
 }
 
@@ -147,25 +192,39 @@ const deleteButton = document.querySelector('[data-delete]');
 const clearButton = document.querySelector('[data-clear]');
 const equalsButton = document.querySelector('[data-equals]');
 const operationTextElement = document.querySelector('[data-operation]');
+const instantResultTextElement = document.querySelector(
+  '[data-instant-result]'
+);
 
-const calculator = new Calculator(operationTextElement);
+let calculatorOperator = '';
+operatorButtons.forEach(button => {
+  calculatorOperator += button.innerText;
+});
+const calculator = new Calculator(
+  operationTextElement,
+  instantResultTextElement,
+  calculatorOperator
+);
 
+// input by click
 numberButtons.forEach(button => {
   button.addEventListener('click', () => {
-    calculator.addNumber(button.innerText);
+    calculator.appendNumber(button.innerText);
+    calculator.compute();
     calculator.updateDisplay();
   });
 });
 
 operatorButtons.forEach(button => {
   button.addEventListener('click', () => {
-    calculator.chooseOperator(button.innerText);
+    calculator.appendOperator(button.innerText);
+    calculator.compute();
     calculator.updateDisplay();
   });
 });
 
 equalsButton.addEventListener('click', () => {
-  calculator.compute();
+  calculator.getResult();
   calculator.updateDisplay();
 });
 
@@ -176,29 +235,35 @@ clearButton.addEventListener('click', () => {
 
 deleteButton.addEventListener('click', () => {
   calculator.delete();
+  calculator.compute();
   calculator.updateDisplay();
 });
 
+// input by keyboard
 const numberArr = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.'];
-document.addEventListener('keydown', function(e) {
+document.addEventListener('keydown', e => {
   if (numberArr.includes(e.key)) {
-    calculator.addNumber(e.key);
+    calculator.appendNumber(e.key);
+    calculator.compute();
   } else if (e.key === 'Backspace') {
     calculator.delete();
+    calculator.compute();
   } else if (
     e.key === '-' ||
     e.key === '/' ||
     (e.shiftKey && (e.key === '+' || e.key === '*' || e.key === '%'))
   ) {
-    calculator.chooseOperator(e.key);
-  } else if (e.key === 'Enter' || e.key === '=') {
+    calculator.appendOperator(e.key);
     calculator.compute();
+  } else if (e.key === 'Enter' || e.key === '=') {
+    calculator.getResult();
   } else if (e.key === 'Escape') {
     calculator.clear();
   }
   calculator.updateDisplay();
 });
 
+// switch dark and light mode
 const colorThemeSwitch = document.querySelector('#colorTheme');
 const colorTheme = localStorage.getItem('colorTheme');
 if (colorTheme === 'dark') {

@@ -1,5 +1,5 @@
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/Web-Practice/VueRouter/'
+    ? 'https://kuochinming.github.io/Web-Practice/Web-Practice/VueRouter/'
     : '/'
 }

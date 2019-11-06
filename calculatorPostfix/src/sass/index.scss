@@ -12,6 +12,7 @@
   --calculator-bg: rgba(255, 255, 255, 0.8);
   --current-operand-font: rgba(0, 0, 0, 0.9);
   --output-font: rgba(0, 0, 0, 0.6);
+  --instant-result-font: rgba(0, 0, 0, 0.5);
   --border: rgba(230, 230, 230, 1);
   --normal-button-bg: rgba(235, 235, 235, 0.6);
   --normal-button-font: rgba(0, 0, 0, 0.7);
@@ -28,6 +29,7 @@
   --calculator-bg: rgba(0, 0, 0, 0.6);
   --current-operand-font: rgba(255, 255, 255, 1);
   --output-font: rgba(255, 255, 255, 0.8);
+  --instant-result-font: rgba(255, 255, 255, 0.5);
   --border: rgba(255, 255, 255, 0.15);
   --normal-button-bg: rgba(0, 0, 0, 0.6);
   --normal-button-font: rgba(255, 255, 255, 0.85);
@@ -56,7 +58,7 @@ body {
   justify-content: center;
   align-content: center;
   grid-template-columns: repeat(4, 60px);
-  grid-template-rows: minmax(120px, auto) repeat(5, 60px);
+  grid-template-rows: 150px repeat(5, 60px);
   gap: 10px;
   background-color: var(--calculator-bg);
   padding: 1.2rem;
@@ -70,19 +72,26 @@ body {
 .output {
   grid-column: 1 / -1;
   color: var(--output-font);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
-  padding: 1rem 0;
   border-bottom: 2px solid var(--border);
-  margin-bottom: 0.5rem;
+  margin-bottom: .5rem;
   word-wrap: break-word;
   word-break: break-all;
   text-align: right;
   font-size: 1.8rem;
   color: var(--current-operand-font);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  overflow: auto;
   .operation {
+    overflow: auto;
+  }
+  .instant-result {
+    color: var(--instant-result-font);
+    font-size: 1.2rem;
+    flex: 30px 0 0;
+    margin: .5rem 0;
   }
 }
 .span-two {
