@@ -1,0 +1,64 @@
+*, *::after, *::before {
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  color: whitesmoke;
+  background-image: linear-gradient(to bottom, #485563, #29323c);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.box {
+  width: 100%;
+  height: 50px;
+  margin: 10px 0;
+  background-color: whitesmoke;
+}
+
+$gutter-width: 30px;
+$grid-number: 12;
+
+.container-fluid {
+  width: 100%;
+  margin: 10px auto;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+%col {
+  padding-left: $gutter-width / 2;
+  padding-right: $gutter-width / 2;
+}
+@for $i from 1 through $grid-number {
+  .col-#{$i} {
+    @extend %col;
+    width: 100% * ($i / $grid-number);
+  }
+  .col-sm-#{$i} {
+    @extend %col;
+    @media(max-width: 480px) {
+      width: 100% * ($i / $grid-number);
+    }
+  }
+  .col-md-#{$i} {
+    @extend %col;
+    @media(max-width: 768px) {
+      width: 100% * ($i / $grid-number);
+    }
+  }
+}
+
