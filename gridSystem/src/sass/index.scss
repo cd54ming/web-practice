@@ -1,4 +1,8 @@
-*, *::after, *::before {
+// tutorial: https://w3c.hexschool.com/blog/67bc4326
+
+*,
+*::after,
+*::before {
   box-sizing: border-box;
   font-family: sans-serif;
 }
@@ -10,8 +14,11 @@ body {
   background-image: linear-gradient(to bottom, #485563, #29323c);
   background-repeat: no-repeat;
   background-size: cover;
+  min-height: 100vh;
 }
-
+.text-center {
+  text-align: center;
+}
 .box {
   width: 100%;
   height: 50px;
@@ -24,41 +31,44 @@ $grid-number: 12;
 
 .container-fluid {
   width: 100%;
-  margin: 10px auto;
-  padding-right: 15px;
-  padding-left: 15px;
+  margin: auto;
+  padding-right: $gutter-width / 2;
+  padding-left: $gutter-width / 2;
 }
 
 .row {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
-  margin-left: -15px;
-  margin-right: -15px;
+  margin-left: -$gutter-width / 2;
+  margin-right: -$gutter-width / 2;
 }
 
+
+$breakpoints: (
+  "": 0px,
+  "-sm": 576px,
+  "-md": 768px,
+  "-lg": 992px,
+  "-xl": 1200px,
+);
+
 %col {
+  position: relative;
+  width: 100%;
   padding-left: $gutter-width / 2;
   padding-right: $gutter-width / 2;
 }
-@for $i from 1 through $grid-number {
-  .col-#{$i} {
-    @extend %col;
-    width: 100% * ($i / $grid-number);
-  }
-  .col-sm-#{$i} {
-    @extend %col;
-    @media(max-width: 480px) {
-      width: 100% * ($i / $grid-number);
+@each $infix in map-keys($breakpoints) {
+  @for $i from 1 through $grid-number {
+    .col#{$infix}-#{$i} {
+      @extend %col;
     }
   }
-  .col-md-#{$i} {
-    @extend %col;
-    @media(max-width: 768px) {
-      width: 100% * ($i / $grid-number);
+  @media (min-width: map-get($breakpoints, $infix)) {
+    @for $i from 1 through $grid-number {
+      .col#{$infix}-#{$i} {
+        width: 100% * ($i / $grid-number);
+      }
     }
   }
 }
-

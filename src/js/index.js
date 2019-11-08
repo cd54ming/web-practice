@@ -101,7 +101,7 @@ let practiceData = [
   {
     name: 'Vue Router',
     description: '練習使用 vue router 來切換頁面。',
-    link: 'VueRouter/',
+    link: 'VueRouter/dist',
     date: '2019/10/24',
   },
   {
@@ -116,6 +116,18 @@ let practiceData = [
     description: '使用 JavaScript 實作簡易計算機，可用鍵盤輸入。',
     link: 'calculator/dist',
     date: '2019/10/27',
+  },
+  {
+    name: '簡易計算機進階版',
+    description: '使用中序轉後序演算法，實作四則運算功能，並可切換 dark / light mode。',
+    link: 'calculatorPostfix/dist',
+    date: '2019/11/08',
+  },
+  {
+    name: '網格系統',
+    description: '使用 SCSS mixin，模仿 Bootstrap 的網格系統。',
+    link: 'gridSystem/dist',
+    date: '2019/11/08',
   },
 ];
 
