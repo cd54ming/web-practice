@@ -22,20 +22,20 @@ function Ball() {
     this.velY = random(-7, 7);
     this.color = 'rgb(' + random(0, 255) + ',' + random(0, 255) + ',' + random(0, 255) + ')';
     this.size = random(10, 20);
-    this.draw = function () {
-        ctx.beginPath();
-        ctx.fillStyle = this.color;
-        ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
-        ctx.fill();
-    }
+    // this.draw = function () {
+    //     ctx.beginPath();
+    //     ctx.fillStyle = this.color;
+    //     ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+    //     ctx.fill();
+    // }
 }
 
-// Ball.prototype.draw = function() {
-//     ctx.beginPath();
-//     ctx.fillStyle = this.color;
-//     ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
-//     ctx.fill();
-// }
+Ball.prototype.draw = function() {
+    ctx.beginPath();
+    ctx.fillStyle = this.color;
+    ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+    ctx.fill();
+}
 
 Ball.prototype.update = function () {
     if ((this.x + this.size) > width) {

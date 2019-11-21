@@ -1,31 +1,27 @@
 {
-  "name": "index",
+  "name": "project-template",
   "version": "1.0.0",
   "description": "the index of whole practice",
   "main": "index.js",
   "scripts": {
-    "test": "run npm successful"
+    "test": "test"
   },
   "author": "KCM",
   "license": "ISC",
   "devDependencies": {
     "browser-sync": "^2.26.7",
-    "eslint": "^6.6.0",
-    "eslint-config-airbnb": "^18.0.1",
+    "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.16.0",
-    "eslint-plugin-react-hooks": "^1.7.0",
     "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^7.0.1",
+    "gulp-autoprefixer": "^7.0.0",
     "gulp-eslint": "^6.0.0",
     "gulp-htmlmin": "^5.0.1",
-    "gulp-imagemin": "^6.2.0",
+    "gulp-imagemin": "^6.1.0",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-terser": "^1.2.0",
-    "node-sass": "^4.13.0"
+    "node-sass": "^4.12.0"
   },
   "dependencies": {}
 }
