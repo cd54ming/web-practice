@@ -28,8 +28,7 @@ const app = new Vue({
     clearTodo() {
       this.todos = [];
     },
-    finishEdit(todo) {
-      todo.content = this.editingContent;
+    finishEdit() {
       this.editingTodo = {};
       this.editingContent = '';
     },
